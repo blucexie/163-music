@@ -15,13 +15,14 @@
         this.model = model
         this.view.render(this.model.data)
         this.active()
-        window.eventHub.on('upload', (data)=>{
+        window.eventHub.on('new', (data)=>{
           this.active()
         })
         window.eventHub.on('select', (data)=>{
-          console.log('data.id')
-          console.log(data.id)
           this.deactive()
+        })
+        $(this.view.el).on('click', ()=>{
+          window.eventHub.emit('new')
         })
       },
       active(){
